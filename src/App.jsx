@@ -115,7 +115,7 @@ function Contact() {
           📱 3185251155
         </a>
         <a
-          href="https://github.com/tuusuario"
+          href="https://github.com/andresSuarez-portafolio"
           target="_blank"
           rel="noopener noreferrer"
           className="contact-item"
