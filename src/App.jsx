@@ -31,7 +31,6 @@ const PROJECTS = [
 const SKILLS = [
   { name: "React", description: "Desarrollo de interfaces modernas y dinámicas", icon: "⚛️" },
   { name: "HTML & CSS", description: "Diseño responsivo y maquetación semántica", icon: "🎨" },
-  { name: "JavaScript", description: "Programación interactiva del lado cliente", icon: "💻" },
   { name: "Git & GitHub", description: "Control de versiones y colaboración", icon: "🔧" }
 ];
 
