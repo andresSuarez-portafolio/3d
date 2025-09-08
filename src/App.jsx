@@ -10,21 +10,21 @@ const PROJECTS = [
     name: "Portafolio Web (React)",
     description: "Mi primer portafolio interactivo.",
     link: "https://andressuarez-portafolio.github.io/portafolio/",
-    color: "#64ffda"
+    color: "rgb(0, 150, 255)"
   },
   {
     position: [0, 0, -5],
-    name: "App de Clima (React)",
-    description: "Una aplicación que muestra el clima de Neiva.",
-    link: "#",
-    color: "#8984d7"
+    name: "MANGO MIX",
+    description: "Una aplicación que muestra LOS PRODUCTOS DE MANGO MIX.",
+    link: "https://mango-mix.vercel.app/",
+    color: "rgb(255, 0, 150)"
   },
   {
     position: [4, 0, 0],
-    name: "Juego Simple 3D",
-    description: "Un pequeño juego hecho con Three.js.",
-    link: "#",
-    color: "#ff6b6b"
+    name: "BARF COMIDA PARA PERRO",
+    description: "Una pagina de comida para perros.",
+    link: "https://barf-comida.vercel.app/",
+    color: "rgb(0, 255, 128)"
   }
 ];
 
@@ -65,7 +65,7 @@ function ProjectItem({ position, name, description, link, color }) {
       onPointerOut={() => hover(false)}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? color : '#2a3f5f'} />
+      <meshStandardMaterial color={hovered ? color : '#3a3a3a'} />
 
       {(hovered || clicked) && (
         <Html position={[0, clicked ? 2 : 1.2, 0]}>
@@ -74,7 +74,7 @@ function ProjectItem({ position, name, description, link, color }) {
             <p>{description}</p>
             {link !== '#' && (
               <a href={link} target="_blank" rel="noopener noreferrer">
-                Ver Proyecto →
+                VER PROYECTO &gt;
               </a>
             )}
           </div>
@@ -88,12 +88,12 @@ function ProjectItem({ position, name, description, link, color }) {
 function Skills() {
   return (
     <div className="section skills-section">
-      <h2 className="section-title">Mis Habilidades</h2>
+      <h2 className="section-title">MIS HABILIDADES</h2>
       <div className="skills-grid">
         {SKILLS.map((skill, index) => (
           <div key={index} className="skill-card">
             <div className="skill-icon">{skill.icon}</div>
-            <h3>{skill.name}</h3>
+            <h3>{skill.name.toUpperCase()}</h3>
             <p>{skill.description}</p>
           </div>
         ))}
@@ -106,13 +106,13 @@ function Skills() {
 function Contact() {
   return (
     <div className="section contact-section">
-      <h2 className="section-title">Contáctame</h2>
+      <h2 className="section-title">CONTÁCTAME</h2>
       <div className="contact-grid">
         <a href="mailto:andresssuarez11@gmail.com" className="contact-item">
-          📧 andresssuarez11@gmail.com
+          <span className="contact-icon">📧</span>ANDRESSSUAREZ11@GMAIL.COM
         </a>
         <a href="tel:3185251155" className="contact-item">
-          📱 3185251155
+          <span className="contact-icon">📱</span>3185251155
         </a>
         <a
           href="https://github.com/andresSuarez-portafolio"
@@ -120,7 +120,7 @@ function Contact() {
           rel="noopener noreferrer"
           className="contact-item"
         >
-          🐙 GitHub
+          <span className="contact-icon">🐙</span>GITHUB
         </a>
       </div>
     </div>
@@ -131,7 +131,7 @@ function Contact() {
 function Header({ onNavigate, activeSection }) {
   return (
     <header className="header">
-      <h1>Andrés Suárez</h1>
+      <h1>ANDRÉS SUÁREZ</h1>
       <nav>
         {['proyectos', 'habilidades', 'contacto'].map(section => (
           <button
@@ -139,7 +139,7 @@ function Header({ onNavigate, activeSection }) {
             onClick={() => onNavigate(section)}
             className={`nav-btn ${activeSection === section ? 'active' : ''}`}
           >
-            {section.charAt(0).toUpperCase() + section.slice(1)}
+            {section.toUpperCase()}
           </button>
         ))}
       </nav>
@@ -154,13 +154,28 @@ export default function App() {
   return (
     <div className={`app ${activeSection}`}>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-          font-family: 'Inter', -apple-system, sans-serif;
-          background: #0a192f;
-          color: #ccd6f6;
+          font-family: 'VT323', monospace;
+          background: #0a0a0a;
+          color: #fff;
           overflow: hidden;
+        }
+
+        .scanlines::after {
+          content: '';
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: linear-gradient(
+              rgba(0,0,0,0) 50%,
+              rgba(0,0,0,.25) 50%
+          );
+          background-size: 100% 4px;
+          pointer-events: none;
+          z-index: 1000;
         }
         
         .app {
@@ -170,54 +185,57 @@ export default function App() {
           transition: all 0.5s ease;
         }
         
-        .app.habilidades { background: #112240; }
-        .app.contacto { background: #1d3557; }
+        .app.habilidades { background: #1a1a1a; }
+        .app.contacto { background: #2b2b2b; }
         
         .header {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
+          top: 0; left: 0; right: 0;
           z-index: 100;
-          background: rgba(10, 25, 47, 0.95);
-          backdrop-filter: blur(10px);
+          background: rgba(10, 10, 10, 0.9);
+          backdrop-filter: blur(5px);
           padding: 20px 40px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          border-bottom: 2px solid #333;
         }
         
         .header h1 {
-          font-size: 2rem;
-          color: #64ffda;
-          font-weight: 700;
+          font-size: 2.5rem;
+          color: #f0f0f0;
+          letter-spacing: 5px;
+          text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
         
-        .header nav { display: flex; gap: 20px; }
+        .header nav { display: flex; gap: 10px; }
         
         .nav-btn {
-          background: none;
-          border: none;
-          color: #8892b0;
-          font-size: 1rem;
+          background: #1a1a1a;
+          border: 2px solid #555;
+          color: #ccc;
+          font-size: 1.2rem;
           cursor: pointer;
           padding: 8px 16px;
-          border-radius: 6px;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           position: relative;
+          letter-spacing: 2px;
         }
-        .nav-btn:hover, .nav-btn.active {
-          color: #64ffda;
-          background: rgba(100, 255, 218, 0.1);
+        .nav-btn:hover {
+          color: rgb(0, 255, 128);
+          border-color: rgb(0, 255, 128);
+          box-shadow: 0 0 10px rgb(0, 255, 128);
+        }
+        .nav-btn.active {
+          color: rgb(0, 150, 255);
+          border-color: rgb(0, 150, 255);
+          box-shadow: 0 0 10px rgb(0, 150, 255);
         }
         
         .section {
           position: absolute;
           top: 100px;
-          left: 0;
-          right: 0;
-          bottom: 60px;
+          left: 0; right: 0; bottom: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -226,50 +244,36 @@ export default function App() {
           text-align: center;
         }
         .section-title {
-          font-size: 2.2rem;
-          color: #64ffda;
-          margin-bottom: 30px;
-          font-weight: 700;
+          font-size: 2.8rem;
+          color: rgb(0, 255, 128);
+          margin-bottom: 40px;
+          letter-spacing: 4px;
+          text-shadow: 0 0 8px rgb(0, 255, 128);
         }
 
-        /* ====== HABILIDADES (compacto + 4 en fila) ====== */
         .skills-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
           gap: 20px;
-          max-width: 900px;   /* Fuerza 4 columnas centradas en desktop */
+          max-width: 900px;
           width: 100%;
         }
         .skill-card {
-          background: rgba(30, 50, 70, 0.8);
+          background: #1b1b1b;
           padding: 20px;
-          border-radius: 10px;
-          border: 1px solid rgba(100, 255, 218, 0.2);
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
-          font-size: 0.9rem;
-          opacity: 0;
-          transform: translateY(10px) scale(0.98);
-          animation: fadeUp 0.5s ease forwards;
+          border: 2px solid #444;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          font-size: 1rem;
+          text-shadow: 0 0 5px rgba(255,255,255,0.2);
         }
-        /* Efecto escalonado */
-        .skill-card:nth-child(1) { animation-delay: 0.05s; }
-        .skill-card:nth-child(2) { animation-delay: 0.12s; }
-        .skill-card:nth-child(3) { animation-delay: 0.19s; }
-        .skill-card:nth-child(4) { animation-delay: 0.26s; }
-
         .skill-card:hover {
-          transform: translateY(-4px) scale(1.01);
-          border-color: #64ffda;
-          box-shadow: 0 8px 22px rgba(100, 255, 218, 0.18);
+          transform: translateY(-4px);
+          border-color: rgb(0, 255, 128);
+          box-shadow: 0 0 15px rgb(0, 255, 128);
         }
-        .skill-icon { font-size: 2.2rem; margin-bottom: 10px; }
-        .skill-card h3 { color: #ccd6f6; margin-bottom: 6px; font-size: 1rem; }
-        .skill-card p { color: #8892b0; line-height: 1.4; font-size: 0.85rem; }
-
-        @keyframes fadeUp {
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        /* ================================================ */
+        .skill-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .skill-card h3 { color: rgb(255, 0, 150); margin-bottom: 6px; font-size: 1.4rem; letter-spacing: 2px; }
+        .skill-card p { color: #ccc; line-height: 1.2; font-size: 0.9rem; }
         
         .contact-grid {
           display: flex;
@@ -278,49 +282,52 @@ export default function App() {
           font-size: 1.2rem;
         }
         .contact-item {
-          color: #ccd6f6;
+          color: rgb(0, 150, 255);
           text-decoration: none;
           padding: 15px 30px;
-          border: 1px solid rgba(100, 255, 218, 0.3);
-          border-radius: 8px;
+          border: 2px solid #444;
           transition: all 0.3s ease;
           display: flex;
           align-items: center;
           gap: 15px;
+          letter-spacing: 1px;
         }
         .contact-item:hover {
-          color: #64ffda;
-          border-color: #64ffda;
-          background: rgba(100, 255, 218, 0.1);
-          transform: translateY(-2px);
+          color: rgb(0, 255, 128);
+          border-color: rgb(0, 255, 128);
+          box-shadow: 0 0 10px rgb(0, 255, 128);
+          transform: scale(1.02);
+        }
+        .contact-icon {
+          font-size: 1.5rem;
         }
         
         .project-card {
-          background: rgba(10, 25, 47, 0.95);
+          background: #1b1b1b;
           padding: 20px;
-          border-radius: 12px;
-          border: 1px solid rgba(100, 255, 218, 0.3);
-          backdrop-filter: blur(10px);
+          border: 2px solid #444;
+          backdrop-filter: blur(5px);
           max-width: 280px;
           text-align: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px #000;
         }
-        .project-card h3 { color: #64ffda; margin-bottom: 10px; font-size: 1.1rem; }
-        .project-card p { color: #8892b0; margin-bottom: 15px; line-height: 1.5; }
+        .project-card h3 { color: rgb(255, 0, 150); margin-bottom: 10px; font-size: 1.4rem; }
+        .project-card p { color: #ccc; margin-bottom: 15px; line-height: 1.4; }
         .project-card a {
-          color: #64ffda; text-decoration: none; font-weight: 500; transition: color 0.3s ease;
+          color: rgb(0, 150, 255); text-decoration: none; font-weight: 500; transition: color 0.3s ease, text-shadow 0.3s ease;
+          text-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
         }
-        .project-card a:hover { color: #ffffff; }
+        .project-card a:hover { color: rgb(0, 255, 128); text-shadow: 0 0 10px rgb(0, 255, 128); }
         
         .footer {
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          background: rgba(10, 25, 47, 0.95);
-          padding: 15px;
+          background: #1a1a1a;
+          padding: 10px;
           text-align: center;
-          color: #8892b0;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(10px);
+          color: #555;
+          border-top: 2px solid #333;
+          backdrop-filter: blur(5px);
         }
         
         @media (max-width: 1024px) {
@@ -335,16 +342,18 @@ export default function App() {
         @media (max-width: 480px) {
           .skills-grid { grid-template-columns: 1fr; max-width: 340px; }
           .skill-card { padding: 16px; }
+          .header h1 { font-size: 1.8rem; }
+          .nav-btn { font-size: 1rem; }
         }
       `}</style>
 
       <Header onNavigate={setActiveSection} activeSection={activeSection} />
 
       {activeSection === 'proyectos' && (
-        <Canvas camera={{ position: [0, 5, 10], fov: 60 }}>
+        <Canvas camera={{ position: [0, 5, 10], fov: 60 }} className="scanlines">
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
-          <directionalLight position={[-5, -10, -5]} intensity={0.3} color="#64ffda" />
+          <directionalLight position={[-5, -10, -5]} intensity={0.3} color="rgb(0, 255, 128)" />
 
           <Environment preset="city" />
 
@@ -360,7 +369,7 @@ export default function App() {
 
           <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
             <planeGeometry args={[20, 20]} />
-            <meshStandardMaterial color="#0a192f" roughness={0.8} metalness={0.1} />
+            <meshStandardMaterial color="#0a0a0a" roughness={0.8} metalness={0.1} />
           </mesh>
 
           {PROJECTS.map((project, index) => (
@@ -369,13 +378,13 @@ export default function App() {
 
           <mesh position={[0, 1.5, 0]}>
             <octahedronGeometry args={[0.8]} />
-            <meshStandardMaterial color="#64ffda" emissive="#64ffda" emissiveIntensity={0.2} />
+            <meshStandardMaterial color="rgb(255, 0, 150)" emissive="rgb(255, 0, 150)" emissiveIntensity={0.2} />
 
             <Html position={[0, 1.5, 0]}>
               <div className="project-card">
-                <h3>Andrés Suárez</h3>
-                <p>Desarrollador Web Frontend</p>
-                <p>Neiva, Huila 🇨🇴</p>
+                <h3>ANDRÉS SUÁREZ</h3>
+                <p>DESARROLLADOR WEB FRONTEND</p>
+                <p>NEIVA, HUILA 🇨🇴</p>
               </div>
             </Html>
           </mesh>
@@ -388,7 +397,7 @@ export default function App() {
       {activeSection === 'contacto' && <Contact />}
 
       <footer className="footer">
-        <p>© 2025 Andrés Suárez • Creado con React & Three.js</p>
+        <p>CONSOLA PORTÁTIL: SONY PSX® • © 2025</p>
       </footer>
     </div>
   );
